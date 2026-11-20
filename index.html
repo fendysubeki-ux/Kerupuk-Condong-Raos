@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1B4332">
+<title>CR Usaha — Kerupuk Condong Raos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Besley:wght@500;700;800&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--hijau:#1B4332;--hijau2:#2D6A4F;--emas:#E0A526;--tepung:#F1F3EE;--kertas:#fff;--tinta:#17261E;--redup:#5D6B62;--garis:#D5DBD2;--merah:#A8321F;--rail:236px;--serif:'Besley',Georgia,serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--tepung);color:var(--tinta);font:15px/1.55 'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased}
+.hidden{display:none}.muted{color:var(--redup)}.small{font-size:13px}
+.rail{position:fixed;inset:0 auto 0 0;width:var(--rail);background:var(--hijau);color:#DCE8E0;padding:26px 14px 22px;display:flex;flex-direction:column;gap:30px}
+.brand{display:flex;align-items:center;gap:12px;padding:0 8px}
+.disc{flex:none;width:42px;height:42px;border-radius:50%;background:var(--emas);color:var(--hijau);display:grid;place-items:center;font:800 17px var(--serif);box-shadow:inset 0 0 0 3px rgba(27,67,50,.18)}
+.bn{display:block;font:800 19px/1.1 var(--serif);color:#fff}.brand small{font-size:12px;color:#A9C2B3}
+.nav{display:flex;flex-direction:column;gap:4px}
+.nav button{display:flex;align-items:center;gap:12px;border:0;background:none;color:#BFD2C6;font:600 14.5px inherit;font-family:inherit;padding:11px 12px;border-radius:6px;cursor:pointer;text-align:left;position:relative}
+.nav button:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav button.active{background:rgba(255,255,255,.12);color:#fff}
+.nav button.active::before{content:"";position:absolute;left:-14px;top:9px;bottom:9px;width:4px;border-radius:0 3px 3px 0;background:var(--emas)}
+.nav svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.rail-foot{margin-top:auto;padding:0 8px;font-size:12px;color:#8FAE9B;line-height:1.6}.rail-foot p{margin:0}.rail-foot p:first-child{color:#DCE8E0;font-weight:600}
+.main{margin-left:var(--rail);padding:42px 48px 70px}.main>section{max-width:940px}
+.page{display:none}.page.active{display:block;animation:in .18s ease-out}@keyframes in{from{opacity:0}to{opacity:1}}
+.ph{margin-bottom:26px}.ph h1{font:800 clamp(28px,4vw,38px)/1.12 var(--serif);letter-spacing:-.012em;margin:0 0 8px;color:var(--hijau)}.ph p{margin:0;color:var(--redup);max-width:56ch}
+.ledger{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:end;gap:18px;padding:24px 26px;background:var(--hijau);color:#fff;border-radius:8px}
+.ledger span{display:block;font-size:13px;color:#A9C2B3;margin-bottom:6px}.ledger strong{font:800 clamp(22px,3vw,32px)/1.1 var(--serif)}
+.ledger i{font:500 26px var(--serif);color:var(--emas);font-style:normal;padding-bottom:3px}.ledger .res strong{color:var(--emas)}
+.count{margin:10px 2px 24px;font-size:13px;color:var(--redup)}
+.panel{background:var(--kertas);border:1px solid var(--garis);border-radius:8px;padding:24px 26px;margin-bottom:20px}
+.panel h2{font:700 20px/1.25 var(--serif);margin:0 0 14px;color:var(--hijau)}
+.sub{font:700 14px inherit;font-family:inherit;margin:26px 0 12px;padding-top:18px;border-top:1px solid var(--garis);color:var(--tinta)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}.row>.panel{margin-bottom:0}.row+.panel,.row+.row{margin-top:20px}
+.split{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:7px 0}
+.dots>span:first-child{display:flex;flex:1;align-items:baseline;gap:8px}.dots>span:first-child::after{content:"";flex:1;border-bottom:2px dotted var(--garis);transform:translateY(-3px)}
+.split b{font-variant-numeric:tabular-nums}.big{font:800 26px var(--serif);color:var(--hijau)}
+.hint{font-size:13px;color:#3F5546;background:#E8EFE9;padding:11px 14px;border-radius:6px;margin:14px 0 0}.hint.gold{background:#FBF0D0;color:#6B4E0E}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.g2{grid-template-columns:1fr 1fr}
+.field{display:flex;flex-direction:column;gap:5px}.field label{font-size:12.5px;font-weight:600;color:var(--redup)}
+.field input,.field select,.field textarea{width:100%;min-width:0;padding:11px 12px;border:1px solid #C3CCC0;border-radius:6px;background:#fff;color:var(--tinta);font:inherit}
+.field textarea{min-height:78px;resize:vertical}
+:focus-visible{outline:2px solid var(--hijau2);outline-offset:2px}
+.size{border:1px solid var(--garis);border-radius:6px;padding:14px;display:flex;flex-direction:column;gap:12px}.size b{font:700 17px var(--serif);color:var(--hijau);display:block}.size small{color:var(--redup);font-size:12.5px}
+.step{display:grid;grid-template-columns:42px 1fr 42px}.step button{border:1px solid #C3CCC0;background:#F6F8F4;color:var(--hijau);font-size:20px;cursor:pointer}.step button:first-child{border-radius:6px 0 0 6px}.step button:last-child{border-radius:0 6px 6px 0}
+.step input{border-radius:0;border-left:0;border-right:0;text-align:center;font-weight:600;-moz-appearance:textfield}.step input::-webkit-inner-spin-button{-webkit-appearance:none}
+.btn{border:0;border-radius:6px;padding:11px 18px;background:var(--hijau);color:#fff;font:600 14px inherit;font-family:inherit;cursor:pointer;display:inline-block}.btn:hover{background:var(--hijau2)}
+.btn.alt{background:none;color:var(--hijau);box-shadow:inset 0 0 0 1.5px var(--hijau)}.btn.alt:hover{background:#E8EFE9}
+.btn.red{background:none;color:var(--merah);box-shadow:none;padding:4px 8px}.btn.red:hover{background:#F6DAD4}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.tablebox{overflow:auto;margin:0 -4px}table{width:100%;border-collapse:collapse;min-width:640px;font-variant-numeric:tabular-nums}
+th{font-size:12.5px;font-weight:600;color:var(--redup);text-align:left;padding:8px 10px;border-bottom:1.5px solid var(--hijau)}td{padding:12px 10px;border-bottom:1px solid var(--garis);font-size:13.5px;vertical-align:top}
+.t-orders :is(th,td):nth-child(n+4):nth-child(-n+7),.t-batch :is(th,td):nth-child(n+2):nth-child(-n+4),.t-tx :is(th,td):nth-child(4){text-align:right}
+.empty{text-align:center;color:var(--redup);padding:22px}td.empty{text-align:center!important}
+.st{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+[data-s="Lunas"]{background:#D8EEDD;color:#1B4332}[data-s="DP"]{background:#FBE9B7;color:#6B4E0E}[data-s="Belum dibayar"]{background:#F6DAD4;color:#8A2616}
+#toast{position:fixed;left:50%;bottom:32px;transform:translate(-50%,10px);opacity:0;background:var(--tinta);color:#fff;padding:12px 20px;border-radius:6px;font-size:14px;transition:.2s;pointer-events:none;max-width:90vw;z-index:20}#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:860px){
+.rail{position:static;width:auto;flex-direction:row;padding:14px 18px;gap:0}.rail-foot{display:none}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;flex-direction:row;gap:0;background:#fff;border-top:1px solid var(--garis);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+.nav button{flex:1;flex-direction:column;gap:3px;font-size:11.5px;color:var(--redup);padding:7px 2px;text-align:center}.nav button:hover{background:none;color:var(--hijau)}
+.nav button.active{background:none;color:var(--hijau)}.nav button.active::before{left:25%;right:25%;top:-7px;bottom:auto;width:auto;height:3px;border-radius:0 0 3px 3px}
+.main{margin:0;padding:24px 16px 104px}.ledger{grid-template-columns:1fr;gap:0;padding:6px 18px}.ledger i{display:none}.ledger>div{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14)}.ledger>div:last-child{border:0}.ledger span{margin:0}.ledger strong{font-size:21px}
+.row,.grid,.g2{grid-template-columns:1fr}.row>.panel{margin-bottom:0}.row{gap:16px}.panel{padding:20px 18px}#toast{bottom:92px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<aside class="rail">
+<div class="brand"><div class="disc">CR</div><div><b class="bn">Condong Raos</b><small>Catatan usaha</small></div></div>
+<nav class="nav" aria-label="Menu utama">
+<button class="active" data-tab="home"><svg viewBox="0 0 24 24"><path d="M5 20v-7M12 20V5M19 20v-10"/></svg><span>Ringkasan</span></button>
+<button data-tab="orders"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></svg><span>Pesanan</span></button>
+<button data-tab="cost"><svg viewBox="0 0 24 24"><path d="M4 11h16v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3zM2 11h20M8 7c0-2 2-2 2-4M14 7c0-2 2-2 2-4"/></svg><span>Modal</span></button>
+<button data-tab="finance"><svg viewBox="0 0 24 24"><path d="M3 7h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 7l12-3v3M16 14h3"/></svg><span>Keuangan</span></button>
+</nav>
+<div class="rail-foot"><p>Kerupuk Condong Raos</p><p>Kampak, Trenggalek</p><p>Pengiriman Jawa Timur</p></div>
+</aside>
+<main class="main">
+<section class="page active" id="home">
+<header class="ph"><h1>Ringkasan usaha</h1><p>Omzet, biaya, dan uang kas dari semua catatan yang sudah dimasukkan.</p></header>
+<div class="ledger"><div><span>Omzet produk</span><strong id="revenue">Rp0</strong></div><i>−</i><div><span>Total biaya tercatat</span><strong id="costs">Rp0</strong></div><i>=</i><div class="res"><span>Estimasi laba</span><strong id="profit">Rp0</strong></div></div>
+<p class="count">Dihitung dari <b id="count">0</b> pesanan.</p>
+<div class="row">
+<div class="panel"><h2>Posisi uang usaha</h2><div class="split"><span>Saldo kas usaha</span><b class="big" id="balance">Rp0</b></div><div class="split dots"><span>Penarikan untuk pribadi</span><b id="withdraw">Rp0</b></div><p class="hint">Laba dan saldo kas berbeda. Pesanan yang belum dibayar belum menjadi uang masuk.</p></div>
+<div class="panel"><h2>Harga jual saat ini</h2><div class="split dots"><span>250 gram</span><b>Rp20.000</b></div><div class="split dots"><span>500 gram</span><b>Rp37.000</b></div><div class="split dots"><span>1 kg</span><b>Rp70.000</b></div><p class="hint gold">Gratis ongkir Jawa Timur untuk total pembelian minimal 2 kg. Ukuran boleh dicampur.</p></div>
+</div>
+<div class="panel"><h2>Pesanan terakhir</h2><div id="latest" class="empty">Belum ada pesanan dicatat.</div></div>
+</section>
+<section class="page" id="orders">
+<header class="ph"><h1>Pesanan</h1><p>Catat pesanan baru, lalu pantau pembayaran dan labanya.</p></header>
+<div class="panel"><h2>Catat pesanan baru</h2><p class="small muted" style="margin:-6px 0 16px">Harga dan berat dihitung otomatis dari daftar harga Kerupuk Condong Raos.</p>
+<div class="grid">
+<div class="size"><div><b>250 gram</b><small>Rp20.000 per bungkus</small></div><div class="step"><button type="button" data-t="q250" data-d="-1" aria-label="Kurangi">−</button><input id="q250" type="number" min="0" step="1" value="0" aria-label="Jumlah bungkus 250 gram"><button type="button" data-t="q250" data-d="1" aria-label="Tambah">+</button></div></div>
+<div class="size"><div><b>500 gram</b><small>Rp37.000 per bungkus</small></div><div class="step"><button type="button" data-t="q500" data-d="-1" aria-label="Kurangi">−</button><input id="q500" type="number" min="0" step="1" value="0" aria-label="Jumlah bungkus 500 gram"><button type="button" data-t="q500" data-d="1" aria-label="Tambah">+</button></div></div>
+<div class="size"><div><b>1 kg</b><small>Rp70.000 per bungkus</small></div><div class="step"><button type="button" data-t="q1000" data-d="-1" aria-label="Kurangi">−</button><input id="q1000" type="number" min="0" step="1" value="0" aria-label="Jumlah bungkus 1 kg"><button type="button" data-t="q1000" data-d="1" aria-label="Tambah">+</button></div></div>
+</div>
+<h3 class="sub">Penerima</h3>
+<div class="grid"><div class="field"><label for="date">Tanggal pesanan</label><input id="date" type="date"></div><div class="field"><label for="name">Nama penerima</label><input id="name" placeholder="Nama lengkap"></div><div class="field"><label for="phone">Nomor WhatsApp</label><input id="phone" type="tel" placeholder="08xxxxxxxxxx"></div>
+<div class="field" style="grid-column:1/-1"><label for="address">Alamat lengkap (Jawa Timur)</label><textarea id="address" placeholder="Jalan, desa/kelurahan, kecamatan, kabupaten/kota"></textarea></div></div>
+<h3 class="sub">Biaya dan pembayaran</h3>
+<div class="row">
+<div><div class="split dots"><span>Total berat</span><b id="weight">0 kg</b></div><div class="split dots"><span>Total harga produk</span><b id="subtotal">Rp0</b></div><div class="split dots"><span>Ketentuan ongkir</span><b id="shippingPolicy">Belum dihitung</b></div><p class="hint gold" id="freeHint">Ongkir gratis berlaku otomatis untuk total minimal 2 kg.</p></div>
+<div class="grid g2">
+<div class="field"><label for="shippingCharged">Ongkir dibayar pelanggan (Rp)</label><input id="shippingCharged" type="number" min="0" value="0"></div>
+<div class="field"><label for="shippingActual">Ongkir aktual usaha (Rp)</label><input id="shippingActual" type="number" min="0" value="0"></div>
+<div class="field"><label for="productionCost">Biaya produksi pesanan (Rp)</label><input id="productionCost" type="number" min="0" placeholder="0"></div>
+<div class="field"><label for="packingCost">Biaya kemasan tambahan (Rp)</label><input id="packingCost" type="number" min="0" placeholder="0"></div>
+<div class="field"><label for="status">Status pembayaran</label><select id="status"><option>Belum dibayar</option><option>DP</option><option>Lunas</option></select></div>
+<div class="field"><label for="received">Uang diterima (Rp)</label><input id="received" type="number" min="0" value="0"></div>
+</div></div>
+<div class="actions"><button class="btn" onclick="saveOrder()">Simpan pesanan</button><button class="btn alt" onclick="resetOrder()">Kosongkan form</button></div></div>
+<div class="panel"><h2>Daftar pesanan</h2><div class="tablebox"><table class="t-orders"><thead><tr><th>Tanggal</th><th>Penerima</th><th>Rincian</th><th>Berat</th><th>Tagihan</th><th>Biaya</th><th>Laba estimasi</th><th>Status</th><th></th></tr></thead><tbody id="orderRows"></tbody></table></div></div>
+</section>
+<section class="page" id="cost">
+<header class="ph"><h1>Modal produksi</h1><p>Masukkan biaya yang benar-benar terpakai untuk satu batch. Kemasan pesanan dan ongkir dicatat di menu Pesanan.</p></header>
+<div class="panel"><h2>Hitung satu kali produksi</h2>
+<div class="grid">
+<div class="field"><label for="batchDate">Tanggal produksi</label><input id="batchDate" type="date"></div><div class="field"><label for="outputKg">Hasil kerupuk siap jual (kg)</label><input id="outputKg" type="number" min="0" step=".01" placeholder="Contoh 10"></div><div class="field"><label for="flour">Tepung / bahan utama (Rp)</label><input id="flour" type="number" min="0" placeholder="0"></div>
+<div class="field"><label for="spice">Bawang putih & bumbu (Rp)</label><input id="spice" type="number" min="0" placeholder="0"></div><div class="field"><label for="oil">Minyak / bahan proses (Rp)</label><input id="oil" type="number" min="0" placeholder="0"></div><div class="field"><label for="energy">Gas / kayu bakar / listrik (Rp)</label><input id="energy" type="number" min="0" placeholder="0"></div>
+<div class="field"><label for="labor">Upah tenaga kerja (Rp)</label><input id="labor" type="number" min="0" placeholder="0"></div><div class="field"><label for="water">Air & kebersihan (Rp)</label><input id="water" type="number" min="0" placeholder="0"></div><div class="field"><label for="other">Biaya alat & lain-lain (Rp)</label><input id="other" type="number" min="0" placeholder="0"></div>
+</div><div class="actions"><button class="btn" onclick="calcBatch()">Hitung modal</button><button class="btn alt" onclick="saveBatch()">Simpan batch</button></div><div class="hint" id="batchResult">Total modal dan modal per kg akan tampil di sini.</div></div>
+<div class="panel"><h2>Riwayat produksi</h2><div class="tablebox"><table class="t-batch"><thead><tr><th>Tanggal</th><th>Hasil jadi</th><th>Total modal</th><th>Modal per kg</th><th></th></tr></thead><tbody id="batchRows"></tbody></table></div></div>
+<div class="panel"><h2>Komponen modal produksi</h2>
+<div class="split dots"><span>Bahan utama</span></div><p class="small muted" style="margin:0 0 10px">Tepung tapioka/sagu dan bahan resep kerupuk bawang.</p>
+<div class="split dots"><span>Bumbu</span></div><p class="small muted" style="margin:0 0 10px">Bawang putih, garam, penyedap, dan bahan lain sesuai resep.</p>
+<div class="split dots"><span>Proses</span></div><p class="small muted" style="margin:0 0 10px">Minyak, gas atau bahan bakar, listrik, air, dan tenaga kerja untuk mengolah, mengiris, menjemur, atau menggoreng.</p>
+<div class="split dots"><span>Biaya pendukung</span></div><p class="small muted" style="margin:0">Kebersihan dan penyusutan alat. Harga beli mesin atau kompor tidak dibebankan seluruhnya ke satu batch.</p>
+<p class="hint gold">Plastik kemasan jual, label, kardus, dan ongkir dicatat di pesanan sebagai biaya penjualan dan pengiriman, bukan biaya bahan produksi.</p></div>
+</section>
+<section class="page" id="finance">
+<header class="ph"><h1>Keuangan</h1><p>Saldo awal, uang pribadi, pengeluaran usaha, dan backup data.</p></header>
+<div class="row">
+<div class="panel"><h2>Saldo awal usaha</h2><div class="field"><label for="opening">Saldo uang usaha saat mulai mencatat (Rp)</label><input id="opening" type="number" min="0" placeholder="0"></div><div class="field" style="margin-top:12px"><label for="capital">Tambahan modal pemilik (Rp)</label><input id="capital" type="number" min="0" placeholder="0"></div><div class="actions"><button class="btn" onclick="saveSettings()">Simpan saldo</button></div></div>
+<div class="panel"><h2>Uang pribadi pemilik</h2><div class="field"><label for="personalType">Jenis</label><select id="personalType"><option value="withdraw">Ambil uang usaha untuk pribadi</option><option value="deposit">Setor uang pribadi ke usaha</option></select></div><div class="field" style="margin-top:12px"><label for="personalAmount">Nominal (Rp)</label><input id="personalAmount" type="number" min="1" placeholder="0"></div><div class="field" style="margin-top:12px"><label for="personalNote">Catatan</label><input id="personalNote" placeholder="Contoh: kebutuhan pribadi"></div><div class="actions"><button class="btn" onclick="addPersonal()">Simpan transaksi</button></div></div>
+</div>
+<div class="panel"><h2>Pengeluaran usaha lainnya</h2><div class="grid"><div class="field"><label for="expenseName">Keterangan</label><input id="expenseName" placeholder="Contoh: promosi"></div><div class="field"><label for="expenseAmount">Nominal (Rp)</label><input id="expenseAmount" type="number" min="1" placeholder="0"></div><div class="field"><label for="expenseDate">Tanggal</label><input id="expenseDate" type="date"></div></div><div class="actions"><button class="btn" onclick="addExpense()">Catat pengeluaran</button></div></div>
+<div class="panel"><h2>Riwayat transaksi</h2><div class="tablebox"><table class="t-tx"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Catatan</th><th>Nominal</th><th></th></tr></thead><tbody id="transactions"></tbody></table></div></div>
+<div class="panel"><h2>Backup data</h2><p class="small muted" style="margin-top:-4px">Data tersimpan di browser perangkat ini. Unduh backup secara rutin agar catatan tidak hilang jika data browser terhapus.</p><div class="actions"><button class="btn alt" onclick="backup()">Unduh backup</button><label class="btn alt" for="restore">Pulihkan backup</label><input class="hidden" id="restore" type="file" accept=".json" onchange="restoreData(event)"></div></div>
+</section>
+</main>
+<div id="toast" role="status"></div>
+<script>
+
+const KEY='cr_usaha_v2';let db={orders:[],batches:[],tx:[],opening:0,capital:0};
+const $=x=>document.getElementById(x),num=x=>Number($(x).value)||0,fmt=x=>'Rp'+Math.round(x||0).toLocaleString('id-ID'),today=()=>new Date().toISOString().slice(0,10);
+function persist(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function calc(){let a=num('q250'),b=num('q500'),c=num('q1000'),kg=a*.25+b*.5+c,subtotal=a*20000+b*37000+c*70000; $('weight').textContent=kg.toFixed(2).replace(/\.?0+$/,'')+' kg';$('subtotal').textContent=fmt(subtotal);$('shippingPolicy').textContent=kg>=2?'Gratis ongkir':'Ongkir dibayar pembeli';if(kg>=2){$('shippingCharged').value=0;$('freeHint').textContent='Berat pesanan minimal 2 kg: ongkir pelanggan otomatis Rp0. Biaya ongkir aktual tetap dicatat sebagai biaya usaha.'}else{$('freeHint').textContent='Berat pesanan di bawah 2 kg: isi ongkir yang dibayar pelanggan setelah tarif kurir dikonfirmasi.'}return {a,b,c,kg,subtotal}}
+['q250','q500','q1000'].forEach(id=>$(id).addEventListener('input',calc));
+function saveOrder(){let v=calc();if(v.kg<=0||!$('name').value.trim()||!$('phone').value.trim()||!$('address').value.trim()){toast('Isi minimal satu ukuran, nama, nomor WhatsApp, dan alamat lengkap.');return}if(v.kg>=2&&num('shippingCharged')>0){toast('Pesanan minimal 2 kg mendapat gratis ongkir. Ongkir pelanggan diatur menjadi Rp0.');$('shippingCharged').value=0}let order={id:Date.now(),date:$('date').value,name:$('name').value,phone:$('phone').value,address:$('address').value,...v,shippingCharged:num('shippingCharged'),shippingActual:num('shippingActual'),production:num('productionCost'),packing:num('packingCost'),status:$('status').value,received:num('received')};db.orders.unshift(order);persist();resetOrder();toast('Pesanan berhasil disimpan.')}
+function resetOrder(){['q250','q500','q1000','name','phone','address','shippingActual','productionCost','packingCost','received'].forEach(id=>$(id).value='');$('q250').value=$('q500').value=$('q1000').value=0;$('shippingCharged').value=0;$('status').value='Belum dibayar';$('date').value=today();calc()}
+function del(group,id){if(confirm('Hapus catatan ini?')){db[group]=db[group].filter(x=>x.id!==id);persist()}}
+function calcBatch(){let total=['flour','spice','oil','energy','labor','water','other'].reduce((s,id)=>s+num(id),0),kg=num('outputKg');window.batchCalc={total,kg};$('batchResult').innerHTML='<b>Total modal: '+fmt(total)+'</b><br>Hasil jadi: '+kg+' kg<br><b>Modal produksi per kg: '+fmt(kg?total/kg:0)+'</b>'}
+function saveBatch(){calcBatch();let v=window.batchCalc;if(v.total<=0||v.kg<=0){toast('Isi biaya dan hasil produksi terlebih dahulu.');return}db.batches.unshift({id:Date.now(),date:$('batchDate').value,kg:v.kg,total:v.total});persist();toast('Batch produksi tersimpan.')}
+function saveSettings(){db.opening=num('opening');db.capital=num('capital');persist();toast('Saldo usaha disimpan.')}
+function addPersonal(){let a=num('personalAmount');if(a<=0){toast('Masukkan nominal.');return}db.tx.unshift({id:Date.now(),date:today(),type:$('personalType').value,amount:a,note:$('personalNote').value||'Transaksi pemilik'});$('personalAmount').value=$('personalNote').value='';persist()}
+function addExpense(){let a=num('expenseAmount'),name=$('expenseName').value.trim();if(a<=0||!name){toast('Isi keterangan dan nominal.');return}db.tx.unshift({id:Date.now(),date:$('expenseDate').value||today(),type:'expense',amount:a,note:name});$('expenseAmount').value=$('expenseName').value='';persist()}
+function render(){let revenue=db.orders.reduce((s,o)=>s+o.subtotal+o.shippingCharged,0),cost=db.orders.reduce((s,o)=>s+o.production+o.packing+o.shippingActual,0)+db.tx.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0),profit=revenue-cost; $('revenue').textContent=fmt(revenue);$('costs').textContent=fmt(cost);$('profit').textContent=fmt(profit);$('count').textContent=db.orders.length;let received=db.orders.reduce((s,o)=>s+o.received,0),withdraw=db.tx.filter(t=>t.type==='withdraw').reduce((s,t)=>s+t.amount,0),deposit=db.tx.filter(t=>t.type==='deposit').reduce((s,t)=>s+t.amount,0),expense=db.tx.filter(t=>t.type==='expense'||t.type==='withdraw').reduce((s,t)=>s+t.amount,0);$('balance').textContent=fmt(db.opening+db.capital+deposit+received-expense);$('withdraw').textContent=fmt(withdraw);
+$('orderRows').innerHTML=db.orders.length?db.orders.map(o=>{let costs=o.production+o.packing+o.shippingActual,rev=o.subtotal+o.shippingCharged,items=[o.a?o.a+'×250g':'',o.b?o.b+'×500g':'',o.c?o.c+'×1kg':''].filter(Boolean).join(', ');return `<tr><td>${o.date}</td><td><b>${esc(o.name)}</b><br>${esc(o.phone)}<br><span class="muted">${esc(o.address)}</span></td><td>${items}</td><td>${o.kg} kg</td><td>${fmt(rev)}</td><td>${fmt(costs)}</td><td>${fmt(rev-costs)}</td><td><span class="st" data-s="${esc(o.status)}">${esc(o.status)}</span></td><td><button class="btn red" onclick="del('orders',${o.id})">Hapus</button></td></tr>`}).join(''):'<tr><td colspan="9" class="empty">Belum ada pesanan.</td></tr>';
+$('latest').innerHTML=db.orders.length?db.orders.slice(0,4).map(o=>`<div class="split" style="padding:7px 0;border-bottom:1px solid var(--line)"><span>${esc(o.name)} <small class="muted">• ${o.kg} kg</small></span><b>${fmt(o.subtotal)}</b></div>`).join(''):'Belum ada pesanan dicatat.';
+$('batchRows').innerHTML=db.batches.length?db.batches.map(b=>`<tr><td>${b.date}</td><td>${b.kg} kg</td><td>${fmt(b.total)}</td><td>${fmt(b.total/b.kg)}</td><td><button class="btn red" onclick="del('batches',${b.id})">Hapus</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">Belum ada batch produksi.</td></tr>';
+$('transactions').innerHTML=db.tx.length?db.tx.map(t=>`<tr><td>${t.date}</td><td>${t.type==='withdraw'?'Ambil pribadi':t.type==='deposit'?'Setor modal':'Pengeluaran usaha'}</td><td>${esc(t.note)}</td><td>${fmt(t.amount)}</td><td><button class="btn red" onclick="del('tx',${t.id})">Hapus</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">Belum ada transaksi.</td></tr>'}
+function backup(){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.href=u;a.download='backup-condong-raos-'+today()+'.json';a.click();URL.revokeObjectURL(u)}
+function restoreData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!Array.isArray(x.orders)||!Array.isArray(x.batches)||!Array.isArray(x.tx))throw 0;db=x;persist();toast('Backup berhasil dipulihkan.')}catch{toast('File backup tidak valid.')}};r.readAsText(f)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab))});
+try{let old=JSON.parse(localStorage.getItem(KEY));if(old)db={...db,...old}}catch{};['date','batchDate','expenseDate'].forEach(id=>$(id).value=today());$('opening').value=db.opening;$('capital').value=db.capital;calc();render();
+
+let _t;function toast(m){const e=$('toast');e.textContent=m;e.classList.add('show');clearTimeout(_t);_t=setTimeout(()=>e.classList.remove('show'),2600)}
+document.querySelectorAll('.step button').forEach(b=>b.onclick=()=>{const i=$(b.dataset.t);i.value=Math.max(0,(Number(i.value)||0)+Number(b.dataset.d));i.dispatchEvent(new Event('input'))});
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>scrollTo(0,0)));
+
+</script></body></html>
